@@ -43,6 +43,10 @@ interface ElectronAPI {
   onUpdateAvailable: (callback: (version: string) => void) => void;
   onUpdateProgress: (callback: (percent: number) => void) => void;
   onUpdateDownloaded: (callback: (version: string) => void) => void;
+  windowMinimize: () => void;
+  windowMaximize: () => void;
+  windowClose: () => void;
+  windowIsMaximized: () => Promise<boolean>;
 }
 
 interface Window {

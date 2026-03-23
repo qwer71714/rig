@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { TitleBar } from '@/components/TitleBar';
 import { SearchBar } from '@/components/SearchBar';
 import { AppInfoCard } from '@/components/AppInfoCard';
 import { ReviewsTable } from '@/components/ReviewsTable';
@@ -105,24 +106,14 @@ export default function HomePage() {
   }, [result, showToast]);
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="flex items-center justify-between px-7 py-4 bg-white border-b border-slate-200">
-        <div className="flex items-center gap-2.5">
-          <div className="flex items-center justify-center w-9 h-9 bg-blue-600 text-white rounded-md">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
-            </svg>
-          </div>
-          <h1 className="text-[17px] font-bold tracking-tight">App Store Crawler</h1>
-        </div>
-        <span className="text-[11px] font-semibold px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full">
-          v1.0
-        </span>
-      </header>
+    <div className="min-h-screen flex flex-col">
+      {/* Custom Title Bar */}
+      <TitleBar />
 
+      {/* Main Content */}
+      <main className="flex-1 overflow-auto">
       {/* Search */}
-      <section className="px-7 pt-7">
+      <section className="px-7 pt-6">
         <SearchBar onCrawl={handleCrawl} loading={loading} />
       </section>
 
@@ -164,6 +155,7 @@ export default function HomePage() {
 
       {/* Toast */}
       <Toast message={toast} />
+      </main>
     </div>
   );
 }

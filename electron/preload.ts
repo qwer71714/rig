@@ -30,4 +30,9 @@ contextBridge.exposeInMainWorld('api', {
   onUpdateDownloaded: (callback: (version: string) => void): void => {
     ipcRenderer.on('update:downloaded', (_e, version) => callback(version));
   },
+
+  windowMinimize: (): void => ipcRenderer.send('window:minimize'),
+  windowMaximize: (): void => ipcRenderer.send('window:maximize'),
+  windowClose: (): void => ipcRenderer.send('window:close'),
+  windowIsMaximized: (): Promise<boolean> => ipcRenderer.invoke('window:isMaximized'),
 });
