@@ -1,6 +1,6 @@
 {
   "name": "app-store-crawler",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "App Store & Google Play Store Crawler with Electron + Next.js UI",
   "main": "dist-electron/electron/main.js",
   "scripts": {
