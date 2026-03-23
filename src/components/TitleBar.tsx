@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 export function TitleBar() {
   const [maximized, setMaximized] = useState(false);
+  const [version, setVersion] = useState('');
 
   const checkMaximized = useCallback(async () => {
     if (typeof window !== 'undefined' && window.api?.windowIsMaximized) {
@@ -14,6 +15,9 @@ export function TitleBar() {
   useEffect(() => {
     checkMaximized();
     window.addEventListener('resize', checkMaximized);
+    if (window.api?.getVersion) {
+      window.api.getVersion().then(setVersion);
+    }
     return () => window.removeEventListener('resize', checkMaximized);
   }, [checkMaximized]);
 
@@ -38,9 +42,11 @@ export function TitleBar() {
         <span className="text-[13px] font-semibold text-slate-700 tracking-tight">
           App Store Crawler
         </span>
-        <span className="text-[10px] font-medium px-1.5 py-0.5 bg-blue-50 text-blue-500 rounded">
-          v1.0
-        </span>
+        {version && (
+          <span className="text-[10px] font-medium px-1.5 py-0.5 bg-blue-50 text-blue-500 rounded">
+            v{version}
+          </span>
+        )}
       </div>
 
       {/* Right: Window Controls */}

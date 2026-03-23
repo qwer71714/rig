@@ -47,6 +47,7 @@ interface ElectronAPI {
   windowMaximize: () => void;
   windowClose: () => void;
   windowIsMaximized: () => Promise<boolean>;
+  getVersion: () => Promise<string>;
 }
 
 interface Window {
