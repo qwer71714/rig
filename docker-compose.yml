@@ -1,0 +1,16 @@
+services:
+  crawler:
+    build: .
+    container_name: app-crawler
+    volumes:
+      - ./output:/app/output
+      - ./src/scrapers:/app/src/scrapers
+      - ./src/services:/app/src/services
+      - ./src/utils:/app/src/utils
+      - ./src/types:/app/src/types
+      - ./electron:/app/electron
+    environment:
+      - NODE_ENV=development
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+    command: >
+      sh -c "npx tsc -p tsconfig.electron.json && node dist-electron/src/services/crawlService.js"

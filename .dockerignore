@@ -1,0 +1,10 @@
+node_modules
+dist-electron
+out
+.next
+ output/*.xlsx
+.git
+*.md
+src/app
+src/components
+public
